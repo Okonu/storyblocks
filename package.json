@@ -1,5 +1,5 @@
 {
-  "name": "enode",
+  "name": "storyblocks",
   "version": "1.0.0",
   "description": "simple CRUD app for stories, made for purposes of re-learning authentication",
   "main": "app.js",
