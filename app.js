@@ -4,8 +4,9 @@ const dotenv = require('dotenv');
 const morgan = require('morgan'); //for logging, showing requests made in the console
 const exphbs = require('express-handlebars'); //UI template engine
 const passport = require('passport');
-const session = require('cookie-session');
-// const session = require('express-session');
+// const session = require('cookie-session');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const connectDB= require('./config/db');
 
 // load config file
@@ -41,6 +42,11 @@ app.use(passport.session())
 //static folder
 app.use(express.static(path.join(__dirname, 'public')))
 
+//storing sessions
+app.use(session({
+  secret: 'foo',
+  store: new MongoStore(options)
+}));
 
 //Routes
 app.use('/',require('./routes/index'))
