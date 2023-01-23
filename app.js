@@ -4,7 +4,8 @@ const dotenv = require('dotenv');
 const morgan = require('morgan'); //for logging, showing requests made in the console
 const exphbs = require('express-handlebars'); //UI template engine
 const passport = require('passport');
-const session = require('express-session')
+const session = require('cookie-session');
+// const session = require('express-session');
 const connectDB= require('./config/db');
 
 // load config file
