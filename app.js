@@ -1,12 +1,13 @@
 const path = require('path');
 const express = require('express');
+const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const morgan = require('morgan'); //for logging, showing requests made in the console
 const exphbs = require('express-handlebars'); //UI template engine
 const passport = require('passport');
 // const session = require('cookie-session');
 const session = require('express-session');
-// const MongoStore = require('connect-mongo')(session);
+const MongoStore = require('connect-mongo');
 const connectDB= require('./config/db');
 
 // load config file
@@ -34,7 +35,7 @@ app.use(session({
     // cookie: {maxAge:60000},
     resave: false,          //don't save a session if nothing is modified
     saveUninitialized: false, //don't create a session untill something is initialized
-    // store: MongoStore.create({mongoUrl:process.env.MONGO_URI}),
+    store: MongoStore.create({mongoUrl: process.env.MONGO_URI}),
 }))
 
 //passport middleware
